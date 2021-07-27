@@ -1,0 +1,52 @@
+#popup-container {
+  z-index: 8000;
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+}
+#popup-container .popup-msg {
+  background-color: #111;
+  color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  position: relative;
+  z-index: 7500;
+  font-size: medium;
+}
+
+@media only screen and (max-width: 720px) {
+  #popup-container {
+  bottom: 0px;
+  left: 0px;
+  }
+}
+
+.slide-in {
+  animation-name: slideIn;
+  animation-duration: 0.8s;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-400px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.slide-out {
+  animation-name: slideOut;
+  animation-duration: 0.8s;
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(80px);
+    opacity: 0;
+  }
+}
