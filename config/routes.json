@@ -485,5 +485,23 @@
       {"function":"permissionHandler", "args": [["Admin", "Editor"]]},
       {"function":"sendTrainedModel", "args": []}
     ]
+  },{
+    "route":"/data/Registration/post",
+    "method":"post",
+    "handlers":[
+      {"function":"mongoAdd", "args": ["camic", "registration"]}
+    ]
+  },{
+    "route":"/data/Registration/find",
+    "method":"get",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "registration"]}
+    ]
+  },{
+    "route":"/data/Exit/post",
+    "method":"post",
+    "handlers":[
+      {"function":"mongoAdd", "args": ["camic", "exit"]}
+    ]
   }
 ]

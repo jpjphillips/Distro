@@ -27,9 +27,9 @@ services:
       - mongo
   back:
     build:
-      context: "https://github.com/camicroscope/caracal.git#v3.9.4"
+      context: "https://github.com/camicroscope/caracal.git#develop"
       args:
-        viewer: "v3.9.4"
+        viewer: "develop"
     depends_on:
       - "mongo"
     ports:
@@ -46,10 +46,12 @@ services:
       - ./jwt_keys/:/src/keys/
       - ./config/routes.json:/src/routes.json
       - ./config/contentSecurityPolicy.json:/src/contentSecurityPolicy.json
+      - ./frontend/:/src/camicroscope/
     environment:
       JWK_URL: "https://www.googleapis.com/oauth2/v3/certs"
       IIP_PATH: "http://ca-iip:8080/fcgi-bin/iipsrv.fcgi"
       MONGO_URI: "mongodb://ca-mongo"
+      DISABLE_SEC: "true"
   iip:
     image: camicroscope/iipimage:version-3.8.4
     container_name: ca-iip
