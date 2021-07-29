@@ -503,5 +503,11 @@
     "handlers":[
       {"function":"mongoAdd", "args": ["camic", "exit"]}
     ]
+  },{
+    "route":"/data/Exit/find",
+    "method":"get",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "exit"]}
+    ]
   }
 ]
