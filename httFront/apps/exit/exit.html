@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Exit Survey</title>
+    <meta charset="utf-8" />
+    <script src='../../../core/Store.js'></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./main.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
+    <style>
+ 
+        /* Styling form-control Class */
+        .form-control {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+ 
+        /* Styling form-control Label */
+        .form-control label {
+            display: block;
+            margin-bottom: 10px;
+        }
+ 
+        /* Styling form-control Radio
+        button and Checkbox */
+        .form-control input[type="radio"],
+        .form-control input[type="checkbox"] {
+            display: inline-block;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<!-- Header -->
+
+<!-- <header id="header" >
+    <nav id= "nav" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="position: sticky;">
+        <button style="display:none;" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+       <ul>
+            <li><a href="landing.html" class="link" style="color: white;">Home</a></li>
+            <li><a href="../table.html"  class="link">Slides</a></li>
+            <li style="float: right;"><a href="/apps/signup/signup.html"  class="link">Signup</a></li>
+            <li style="float: right;"><a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScL91LxrpAZjU88GBZP9gmcdgdf8__uNUwhws2lzU6Lr4qNwA/viewform"  class="link">Feedback</a></li>
+
+        </ul>
+
+    </nav>
+
+</header> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark" style="position: sticky; margin-top: -4em;">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active link" style="font-family: sans-serif;">
+                       <a class="nav-link" href="landing.html"> <i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item  link" style="font-family: sans-serif;">
+                        <a class="nav-link" href="../table.html"> <i class="fas fa-list-ul"></i>  Slides</a>
+                    </li>
+                    <li class="nav-item link">
+                        <a class="nav-link" href="../Info.html"> <i class="fas fa-info-circle"></i> Info</a>
+                    </li>
+                    <li class="nav-item link">
+                        <a class="nav-link" href="../dev-workbench/workbench.html"> <i class="fas fa-pencil-ruler"></i> Workbench</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item link" style="font-family: sans-serif;">
+                        <a class="nav-link" href="../signup/signup.html"> <i class="fas fa-user-plus"></i> Signup</a>
+                    </li>
+                    <li class="nav-item link" style="font-family: sans-serif;">
+                        <a class="nav-link" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScL91LxrpAZjU88GBZP9gmcdgdf8__uNUwhws2lzU6Lr4qNwA/viewform"> <i class="fas fa-comment"></i> Feedback</a>
+                    </li>
+                </ul>
+            </div>
+    </div>
+</nav>
+
+
+<!-- Main -->
+
+<section id="main" class="wrapper">
+
+    <div class="inner">
+
+        <header class="major">
+
+            <h2>HTT Data Collection - Exit Survey</h2>
+
+        </header>
+
+        <!-- Content -->
+        <div>The HTT team wants to thank you for your time and support of the High Throughput Truthing project mission, the exploration of ground truth methods to support algorithm validation in Digital Pathology.</div> 
+        <br/>
+        <div>Please complete the short survey below to help us further develop our platform and mission.</div>
+        <br/>
+        <div>We want to keep in touch, and we hope you do too. Let us know at the bottom how you would like to get involved!</div>
+        <br/>
+        <div>*=Required</div>
+
+        <form class="row g-3 needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="email" id="label-email">
+                    Which email did you use to log in to your study? *
+                </label>
+
+                <input type="exitEmail" id="exitEmail" placeholder="Your answer" required>
+                <div class="invalid-feedback">
+                    Please enter your email.
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="update" id="label-update">
+                    Are you willing to receive HTT email updates on study progress and results, 
+                    as well as future opportunities to get involved? *
+                </label>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="update" id="yes" value="Yes" required>
+                    <label class="form-check-label" for="yes">
+                    Yes
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="update" id="no" value="No" required>
+                    <label class="form-check-label" for="no">
+                    No
+                    </label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="futureEmail" id="label-email">
+                    If you answered 'yes' above, enter the email we may contact you by.
+                </label>
+
+                <input type="futureEmail" id="futureEmail" placeholder="Your answer">
+            </div>
+
+            <div class="form-group browsers">
+                <label for="plat" id="label-plat">
+                    I completed data collection on these platforms: (check all that apply) *
+                </label>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="platform" id="eedap" value="eeDAP" required>
+                    <label class="form-check-label" for="eedap">
+                    eeDAP
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="platform" id="pathpresenter" value="PathPresenter" required>
+                    <label class="form-check-label" for="pathpresenter">
+                    PathPreseneter
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="platform" id="camicroscope" value="caMicroscope" required>
+                    <label class="form-check-label" for="camicroscope">
+                    caMicroscope
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group browsers">
+                <label for="batch" id="label-batch">
+                    I completed these batches: (check all that apply) *
+                </label>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="batches" id="one" value="completed" required>
+                    <label class="form-check-label" for="one">
+                    1
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="batches" id="two" value="2" required>
+                    <label class="form-check-label" for="two">
+                    2
+                    </label>
+                </div><div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="batches" id="three" value="3" required>
+                    <label class="form-check-label" for="three">
+                    3
+                    </label>
+                </div><div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="batches" id="four" value="4" required>
+                    <label class="form-check-label" for="four">
+                    4
+                    </label>
+                </div><div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="batches" id="five" value="5" required>
+                    <label class="form-check-label" for="five">
+                    5
+                    </label>
+                </div><div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="batches" id="six" value="6" required>
+                    <label class="form-check-label" for="six">
+                    6
+                    </label>
+                </div><div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="batches" id="seven" value="7" required>
+                    <label class="form-check-label" for="seven">
+                    7
+                    </label>
+                </div><div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="batches" id="eight" value="8" required>
+                    <label class="form-check-label" for="eight">
+                    8
+                    </label>
+                </div><div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="batches" id="na" value="NA" required>
+                    <label class="form-check-label" for="na">
+                    I don't remember
+                    </label>
+                </div><div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="batches" id="other" value="Other" required>
+                    <label class="form-check-label" for="other">
+                    Other <input type="otherText" id="otherInfo" placeholder="">
+                    </label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="monitor" id="label-monitor">
+                    If you completed this study using a digital platform: 
+                    What is your monitor Resolution, Make, & Model? 
+                    (if completed on the microscope, write 'N/A') *
+                </label>
+
+                <input type="monitorInfo" id="monitorInfo" placeholder="Your answer" required>
+                <div class="invalid-feedback">
+                    Please enter your monitor info.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="training" id="label-training">
+                    In which institution were you clinically trained? *
+                </label>
+
+                <input type="institution" id="institution" placeholder="Your answer" required>
+                <div class="invalid-feedback">
+                    Please enter where you were trained.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="digital" class="form-label" id="digital">
+                    What feedback do you have for the digital platform? 
+                    (PathPresenter & CaMicroscope) *
+                </label>
+
+                <input type="digiFeedback" id="digiFeedback" placeholder="Your answer" required>
+                <div class="invalid-feedback">
+                    Please enter your feedback.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="analog" class="form-label" id="analog">
+                    What feedback do you have for the analog platform? (eeDAP + Microscope) *
+                </label>
+
+                <input type="anaFeedback" id="anaFeedback" placeholder="Your answer" required>
+                <div class="invalid-feedback">
+                    Please enter your feedback.
+                </div>
+            </div>
+
+            <div class="form-group browsers">
+                <label for="future" id="label-future">
+                    I wish to get involved. I'm interested in helping the team with: 
+                    (select all that apply) *
+                </label>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="involve" id="source" value="Source" required>
+                    <label class="form-check-label" for="source">
+                    Sourcing glass slides & their scanned versions
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="involve" id="host" value="Host" required>
+                    <label class="form-check-label" for="host">
+                    Hosting an analog (microscope + eeDAP) data collection event at my clinical site
+                    </label>
+                </div><div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="involve" id="educate" value="Educate" required>
+                    <label class="form-check-label" for="educate">
+                    Creating a Continuing Medical Education course in conjunction with this project
+                    </label>
+                </div><div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="involve" id="spread" value="Spread" required>
+                    <label class="form-check-label" for="spread">
+                    Spreading the word & recruiting my colleagues to participate in online data collection
+                    </label>
+                </div><div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="involve" id="none" value="None" required>
+                    <label class="form-check-label" for="none">
+                        I do not have capacity to help at this time
+                    </label>
+            </div>
+            
+            <button type="submit" id="save" >Save</button>
+        </form>
+
+</section>
+
+
+
+<!-- Footer -->
+
+<footer id="footer">
+
+    <div class="content">
+
+        <div class="inner">
+
+
+
+            <section class="about">
+
+                U24 CA18092401A1, <b>Tools to Analyze Morphology and Spatially Mapped Molecular Data</b>
+            </section>
+
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+<script src="./jquery.min.js"></script>
+
+<script src="./jquery.dropotron.min.js"></script>
+
+<script src="./jquery.scrollex.min.js"></script>
+
+<script src="./skel.min.js"></script>
+
+<script src="./util.js"></script>
+
+<script>
+    (function(){
+        var requiredCheckboxes = $('.browsers :checkbox[required]');
+        requiredCheckboxes.change(function(){
+            if(requiredCheckboxes.is(':checked')) {
+                requiredCheckboxes.removeAttr('required');
+            } else {
+                 requiredCheckboxes.attr('required', 'required');
+            }
+        });
+    }); 
+</script>
+
+<script>
+    (function () {
+    'use strict'
+
+    var requiredCheckboxes = $('.browsers :checkbox[required]');
+    requiredCheckboxes.change(function(){
+        if(requiredCheckboxes.is(':checked')) {
+            requiredCheckboxes.removeAttr('required');
+        } else {
+            requiredCheckboxes.attr('required', 'required');
+        }
+    });
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+        }, false)
+        })
+    })()
+</script>
+
+<script>
+    const saveBtn = document.getElementById('save')
+    saveBtn.addEventListener('click',()=>{
+        const date = Date()
+        const exitEmail = document.getElementById('exitEmail').value;
+        const update = $("input:radio[name=update]:checked").val();
+        const futureEmail = document.getElementById('futureEmail').value;
+        const eeDAP = document.getElementById("eedap").checked;
+        const pathpresenter = document.getElementById("pathpresenter").checked;
+        const camicroscope = document.getElementById("camicroscope").checked;
+        const batch1 = document.getElementById("one").checked;
+        const batch2 = document.getElementById("two").checked;
+        const batch3 = document.getElementById("three").checked;
+        const batch4 = document.getElementById("four").checked;
+        const batch5 = document.getElementById("five").checked;
+        const batch6 = document.getElementById("six").checked;
+        const batch7 = document.getElementById("seven").checked;
+        const batch8 = document.getElementById("eight").checked;
+        const batchNA = document.getElementById("na").checked;
+        const batchOther = document.getElementById("other").checked;
+        const otherInfo = document.getElementById('otherInfo').value;
+        const monitorInfo = document.getElementById('monitorInfo').value;
+        const institution = document.getElementById('institution').value;
+        const digiFeedback = document.getElementById('digiFeedback').value;
+        const anaFeedback = document.getElementById('anaFeedback').value;
+        const source = document.getElementById("source").checked;
+        const host = document.getElementById("host").checked;
+        const educate = document.getElementById("educate").checked;
+        const spread = document.getElementById("spread").checked;
+        const none = document.getElementById("none").checked;
+        console.log(date, exitEmail, update, futureEmail, eeDAP, pathpresenter, camicroscope, batch1, batch2, batch3, batch4, batch5, batch6, batch7, batch8, batchNA, batchOther, otherInfo, monitorInfo, institution, digiFeedback, anaFeedback, source, host, educate, spread, none);
+        var exit={date, exitEmail, update, futureEmail, eeDAP, pathpresenter, camicroscope, batch1, batch2, batch3, batch4, batch5, batch6, batch7, batch8, batchNA, batchOther, otherInfo, monitorInfo, institution, digiFeedback, anaFeedback, source, host, educate, spread, none}
+        store.addExit(exit).then((d)=>{
+        console.log(d);
+    })
+    })
+    const store = new Store('../../../data/');
+</script>
+
+</body>
+
+
+
+</html>

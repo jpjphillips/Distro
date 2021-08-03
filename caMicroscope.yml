@@ -46,7 +46,8 @@ services:
       - ./jwt_keys/:/src/keys/
       - ./config/routes.json:/src/routes.json
       - ./config/contentSecurityPolicy.json:/src/contentSecurityPolicy.json
-      - ./frontend/:/src/camicroscope/
+      #- ./frontend/:/src/camicroscope/
+      - ./httFront/:/src/camicroscope/
     environment:
       JWK_URL: "https://www.googleapis.com/oauth2/v3/certs"
       IIP_PATH: "http://ca-iip:8080/fcgi-bin/iipsrv.fcgi"

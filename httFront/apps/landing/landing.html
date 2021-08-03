@@ -1,0 +1,208 @@
+<head>
+
+    <title>FDA HTT - CaMicroscope</title>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./main.css" />
+
+    <!-- add modalbox css -->
+    <link rel='stylesheet' type='text/css' media='all' href='../../components/modalbox/modalbox.css'/>
+    <!-- modalbox -->
+    <script type='text/javascript' src='../../components/modalbox/modalbox.js'></script>
+
+</head>
+
+
+
+<body>
+
+
+
+<!-- Header -->
+<div id='modalbox' ></div>
+<header id="header">
+    <label style="color:white;padding:0 15px;font-size:20px;">CaMicroscope</label>
+    <nav id="nav">
+        <ul>
+            <li><a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScL91LxrpAZjU88GBZP9gmcdgdf8__uNUwhws2lzU6Lr4qNwA/viewform">Feedback</a></li>
+            <li><a href="#" onclick="googleSignOut('../../login.html?logout=true')">Sign Out</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Main -->
+
+<section id="main" class="wrapper" style="padding: 1em 3em 3em 3em;">
+
+    <div class="inner">
+
+        <header class="major" style="margin:0;">
+        <h2 style="margin:0;">MDDT Data Collection</h2>
+        <!-- Thank you -->
+        <script src='../../common/authChecker.js'></script>
+        <script>
+            __auth_check(2)
+        </script>
+            <link rel='stylesheet' type='text/css' media='all' href='../../components/loading/loading.css'/>
+            <script type='text/javascript' src='../../components/loading/loading.js' ></script>
+            <script type='text/javascript' src='../../common/ajv.js'></script>
+            <script type='text/javascript' src='../../common/SHA256.js'></script>
+            <script type='text/javascript' src='../../common/util.js'></script>
+            <script type='text/javascript' src='../../core/Validation.js'></script>
+            <script type='text/javascript' src='../../core/Store.js'></script>
+            <script type="text/javascript">
+                // -- authentication check -- //
+                if(!hasLoginAsGoogle()) window.location = '../../login.html';
+                
+                const roles = getUserRole();
+                const idx = roles.findIndex(e=>e=='write'||e=='admin');
+                if(idx < 0){
+                    // crowd
+                    window.location = './crowd.html';
+                }else{
+                    //window.location = './crowd.html';
+                }
+                // --- temporary for user name --- //
+                const modalbox = new ModalBox({
+                    id:'modalbox',
+                    hasHeader:false,
+                    headerText:'User Name',
+                    hasFooter:false,
+                    clickClose:false
+                });
+                modalbox.body.innerHTML = `
+                    <label>User Name:<input type='text'/></label><button>SAVE</button>
+                `;
+                if(!(sessionStorage.getItem('userName') || getUserId())){
+                    modalbox.open();
+                }
+
+                const btn = modalbox.body.querySelector('button');
+                btn.addEventListener('click', e=>{
+                   const name = modalbox.body.querySelector('input[type=text]').value;
+                   if(!name) {
+                    alert('Please Enter User Name!');
+                    return;
+                   }
+                   sessionStorage.setItem('userName', name);
+                   modalbox.close();
+                })
+                // --- temporary for user name --- //
+
+
+
+
+                const store = new Store("../../data/", $VALIDATION);
+                async function picking(){
+                    Loading.open(document.body,'Randomly Picking...');
+                    const labels = await store.findAllLabelsWithoutAnnotations().then(d=>d);
+                    if(!Array.isArray(labels)){
+                        Loading.close();                        
+                        alert('Service Error!');
+                        return;
+                    }
+                    if(Array.isArray(labels)&&labels.length==0){
+
+                        Loading.close();
+                        alert("No ROI. Please create ROI.");
+                        return;
+                    }
+                    const index = getRandomIntInclusive(0,labels.length-1);
+                    const label = labels[index];
+                    const labelId = label._id;
+                    const slideId = label.provenance.image.slide;
+                    window.location.href = `../labeling/labelingSimpleAnnotation.html?labelId=${labelId}&slideId=${slideId}`;
+                }
+            </script>
+        </header>
+
+        <!-- Content -->
+
+        <div class="content">
+            <p style="margin: 0 0 1em 0;"><strong>USCAP Annual Meeting</strong><br>Feb. 28, 2020<br>Los Angeles Covention Center<br>Los Angeles, CA</p>
+            <a href="#" class="image fit"><img src="./banner1.jpg" alt="" /></a>
+
+        </div>
+
+        <div class="posts">
+            <!-- Organizer -->
+            <section class="post">
+                <a href="../table.html" class="image"><img src="./camic.jpg" alt=""/></a>
+                <div class="content">
+                    <h3>ROI Creation - Organizers</h3>
+                    <p>Organizers select a slide and create ROIs.</p>
+                    <a href="../table.html" class="button">Create</a>
+                    <a href="../labeling/statistics.html" class="button">Result</a>
+                </div>
+            </section>
+
+            <section class="post">
+                <a href="../collection/viewer.html" class="image"><img src="./camic.jpg" style="-webkit-filter: hue-rotate(30deg);filter: hue-rotate(30deg);" alt=""/></a>
+                <div class="content">
+                    <h3>ROI Annotation - Participants</h3>
+                    <p>Participants randomly pick up a ROI and annotate on it.</p>
+                    <a href="../collection/viewer.html" class="button">Pick & Annotate</a>
+                </div>
+            </section>
+            <!--
+            <section class="post">
+                <a target="_blank" href="https://github.com/camicroscope/" class="image"><img src="./code.jpg" alt=""/></a>
+                <div class="content">
+                    <h3>Source Code</h3>
+                    <p>Get and use the code, or file issues on our github repositories.</p>
+                    <a target="_blank" href="https://github.com/camicroscope/" class="button">More</a>
+                </div>
+            </section>
+            -->
+        </div>
+
+</section>
+
+
+
+<!-- Footer -->
+
+<footer id="footer">
+
+    <div class="content">
+
+        <div class="inner">
+
+
+
+<!--             <section class="about">
+
+                U24 CA18092401A1, <b>Tools to Analyze Morphology and Spatially Mapped Molecular Data</b>
+            </section> -->
+
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+
+
+<!-- Scripts -->
+
+<script src="./jquery.min.js"></script>
+
+<script src="./jquery.dropotron.min.js"></script>
+
+<script src="./jquery.scrollex.min.js"></script>
+
+<script src="./skel.min.js"></script>
+
+<script src="./util.js"></script>
+
+
+
+</body>
+
+
+
+</html>
