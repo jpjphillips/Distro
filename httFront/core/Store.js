@@ -246,6 +246,19 @@ class Store {
       body: JSON.stringify(json),
     }).then(this.errorHandler);
   }
+  findRegistration(creator) {
+    var suffix = "Registration/find"
+    var url = this.base + suffix;
+    var query = {}
+    var bySlideId
+    if (creator) {
+      query.creator = creator
+    }
+    return fetch(url + "?" + objToParamStr(query), {
+      credentials: "include",
+      mode: "cors"
+    }).then(this.errorHandler)
+  }
   /**
  * post user
  * @param {object} json - the user data

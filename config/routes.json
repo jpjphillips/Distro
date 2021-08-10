@@ -498,6 +498,12 @@
       {"function":"mongoFind", "args": ["camic", "registration"]}
     ]
   },{
+    "route":"/data/Registration/delete",
+    "method":"delete",
+    "handlers":[
+      {"function":"mongoDelete", "args": ["camic", "registration"]}
+    ]
+  },{
     "route":"/data/Exit/post",
     "method":"post",
     "handlers":[
@@ -508,6 +514,12 @@
     "method":"get",
     "handlers":[
       {"function":"mongoFind", "args": ["camic", "exit"]}
+    ]
+  },{
+    "route":"/data/Exit/delete",
+    "method":"delete",
+    "handlers":[
+      {"function":"mongoDelete", "args": ["camic", "exit"]}
     ]
   }
 ]

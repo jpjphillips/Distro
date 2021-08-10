@@ -3,6 +3,7 @@
     <title>Participant Registration</title>
     <meta charset="utf-8" />
     <script src='../../../core/Store.js'></script>
+    <script src='../../../common/util.js'></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" 
@@ -234,7 +235,12 @@
                 </div>
             </div>
             
-            <button type="submit" id="save" target="_self" onClick="google.com">Save</button>
+            <button type="submit" id="save">Save</button>
+
+            <!-- <a href="http://localhost:4010/apps/landing/crowd.html">
+                <button type="submit" id="save">Save</button>
+            </a> -->
+
         </form>
 </section>
 
@@ -301,8 +307,29 @@
 </script>
 
 <script>
-    const saveBtn = document.getElementById('save')
+    var isNewOne = false;
+    const store = new Store('../../../data/')
+    //const creator = "jpphillips@uchicago.edu"//getUserId()
+    window.onload = async () => {
+        const data = await store.findRegistration({creator:getUserId()});
+        if(data.error){
+            // TODO deal with error
+            return;
+        }
+        if(data.length == 0) { // the user doesn't exist, need to reg
+            isNewOne = true;
+        } else { // the user exist, need to update
+            isNewOne = false;
+            // fill the form with existing registration data
+            document.getElementById('name').value = data[0].name;
+            document.getElementById('contactEmail').value = data[0].contactEmail;
+            // ... TODO fill the rest of form
+        }
+    }
+    const saveBtn = document.getElementById('save');
     saveBtn.addEventListener('click',()=>{
+        // grab the registration data from form
+        const creator = getUserId();
         const date = Date()
         const name = document.getElementById('name').value;
         const contactEmail = document.getElementById('contactEmail').value;
@@ -315,18 +342,21 @@
         const certificationsCountry = document.getElementById('certificationsCountry').value;
         const anatomicYears = document.getElementById('anatomicYears').value;
         const anatomicResident = document.getElementById('anatomicResident').value;
-        const screenName = document.getElementById('screenName').value;
-        console.log(date, name, contactEmail, platformEmail, phone, institution, role, otherInfo, certifications, certificationsCountry, anatomicYears, anatomicResident, screenName);
-        var registration={date, name, contactEmail, platformEmail, phone, institution, role, otherInfo, certifications, certificationsCountry, anatomicYears, anatomicResident, screenName}
-        store.addRegistration(registration).then((d)=>{
-        console.log(d);
+        const screenName = document.getElementById('screenName').value;        
+        if(isNewOne){
+            var registration={creator, create_date:date, name, contactEmail, platformEmail, phone, institution, role, otherInfo, certifications, certificationsCountry, anatomicYears, anatomicResident, screenName}
+            store.addRegistration(registration).then((d)=>{
+                console.log(d);
+            })
+        }else{
+            var registration={creator, update_date:date, name, contactEmail, platformEmail, phone, institution, role, otherInfo, certifications, certificationsCountry, anatomicYears, anatomicResident, screenName}
+            store.addRegistration({creator}, registration).then((d)=>{
+                console.log(d);
+            })
+        }
+
     })
-    })
-    const store = new Store('../../../data/');
+    
 </script>
-
 </body>
-
-
-
 </html>
