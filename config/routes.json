@@ -492,6 +492,18 @@
       {"function":"mongoAdd", "args": ["camic", "registration"]}
     ]
   },{
+    "route":"/data/Demo/post",
+    "method":"post",
+    "handlers":[
+      {"function":"mongoAdd", "args": ["camic", "demo"]}
+    ]
+  },{
+    "route":"/data/Demo/find",
+    "method":"post",
+    "handlers":[
+      {"function":"mongoFind", "args": ["camic", "demo"]}
+    ]
+  },{
     "route":"/data/Registration/find",
     "method":"get",
     "handlers":[
