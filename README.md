@@ -1,73 +1,31 @@
 <h2 align="center">
-  <a href="http://camicroscope.org/"><img src="https://avatars2.githubusercontent.com/u/12075069?s=400&v=4" style="background-color:rgba(0,0,0,0);" height=230 alt="camicroscope: a web-based image viewer optimized for large bio-medical image data viewing"></a>
+  <a href="http://localhost:4010/apps/landing/crowd.html"><img src="https://avatars2.githubusercontent.com/u/12075069?s=400&v=4" style="background-color:rgba(0,0,0,0);" height=230 alt="camicroscope: a web-based image viewer optimized for large bio-medical image data viewing"></a>
 </h2>
 
-[![Build Status](https://travis-ci.org/camicroscope/Distro.svg?branch=master)](https://travis-ci.org/camicroscope/Distro)
+# caMicroscope Testing Distribution Package
 
-# caMicroscope distribution
+This repository contains a build of caMicroscope designed to be easy installed for testing in progress changes. Aspects of the build have been changed compared to current available versions for the purpose of testing only and are noted where possible.
 
+## What you need to install
+- Docker - Installing a local instance of caMicroscope depends on the software Docker. Many versions of Docker are available and should work, but I recommend using Docker Desktop which can be found here: https://www.docker.com/products/docker-desktop
+- Ability to clone repositories - You will have to clone this repository in order to build your local instance. Do this anyway that you are comfortable with such as using SmartGit.
+- (Optional) RStudio + HTT Package - Included in this repository is an API to extract responses to the registration/exit forms into R. For this, you will need RStudio and the current HTT package
 
-run with `docker-compose -f caMicroscope.yml up`
+## Setting up your local instance
+In order to run this build on your local machine, you will need to build and run Docker containers. The below process outlines the easiest way to do so:
+1. Clone this repository onto your local machine
+2. Start up your version of Docker. For Docker Desktop, all you need to do is open the application and wait for it to begin running
+3. Open a command prompt and set your directory to your cloned repository
+4. With Docker running, enter the command `docker-compose -f caMicroscope.yml build` into your command prompt to build your containers
+5. Once the containers have been built, you can run them with the command `docker-compose -f caMicroscope.yml up` (It may take a couple seconds for the containers to start)
+6. Navigate to http://localhost:4010/apps/landing/crowd.html and you should see the landing page of caMicroscope
 
-this will build all services and run in the foreground.
-Use `docker-compose -f caMicroscope.yml build` to rebuild the services.
+You now have a local instance of caMicroscope on your device! You can explore the build as much as you want and when you are finished, go to your command prompt an press Ctrl + C to stop the Docker containers from running.
 
-Once everything is up, go to http://localhost:4010/ to see the landing page.
-
-## SSL
-To enable ssl, mount the private key and certificate files to the ca-back service in /root/src/ssl/privatekey.pem and /root/src/ssl/certificate.pem respectively. HTTPS mode will only be enabled if both of these files are present.
-
-## Component Services
-mongo - vanilla mongo container
-
-idxMongo - ephemeral container to index mongo (that is, this container is *expected* to exit once it's done its job)
-
-iip - slide tile server (see https://github.com/camicroscope/iipImage)
-
-loader - extracts metadata needed for image loading (see https://github.com/camicroscope/SlideLoader)
-
-back - security, data, and routing (see https://github.com/camicroscope/caracal)
-
-back/viewer - within back, viewer files ( see https://github.com/camicroscope/caMicroscope)
-
-## Configuration
-Logging - Logging is enabled by default with a set configurable maximum size. If you need to disable logs, for example due to HIPAA requirements, set the logging driver to none.
-
-See backend and security config notes [here](https://github.com/camicroscope/caracal).
-
-Image Volume - This is, by default, the images directory in this directory. If this is changed, please make the same change across all impacted services.
-
-## Securing caMicroscope
-
-### Getting an Identity Provider and Setting up Login
-
-When selecting, an identity provider, note that we expect it to provide a JWT, and to have a certificate/public key/secret which can be used to verify such JWTs.
-
-The example given in the Distro within config/login.html is set up to use google as an identity provider. See [this guide from google](https://developers.google.com/identity/sign-in/web/sign-in) to set up your own project, which is necessary to enable login on your instance.
-
-### Adding Users to caMicroscope
-
-Add users as in ./config/add\_users.js. This can be done either by editing this file before bringing up the stack, or by running similar code against the camic database in ca-mongo. Attributes can be added to deny access to routes (e.g. allow only some users to post and delete) and userFilters can be used to change visibility of particular documents.
-
-The email field is the email field (or failing that, sub field) in that priority from the identity provider.
-
-## PathDB
-
-To use PathDB, use quip-pathdb.yml instead of caMicroscope.yml.
-
-Running QuIP with PathDB (https://github.com/SBU-BMI/PathDB):
-
-0) place yourself in quip\_distro folder.<br>
-1) copy config/httpd.conf.template to config/httpd.conf<br>
-2) configure httpd.conf with your certificates to enable https.<br>
-3) build with, "docker-compose -f quip-pathdb.yml build"<br>
-4) run with, "docker-compose -f quip-pathdb.yml up -d"
-
-## Support
-Feel free to add any support inquiry as a github issue to this repository. Other feedback can be given via [this form](https://docs.google.com/forms/d/e/1FAIpQLScL91LxrpAZjU88GBZP9gmcdgdf8__uNUwhws2lzU6Lr4qNwA/viewform).
-
-## System Recommendations
-As of 3.8.0, the non-pathdb caMicroscope deployment seems to peak about 500mb of memory per user from basic tests. The system is most likely to work optimally if the CPU can support two or three threads per concurrent user. The containers themselves take up a total of about 6gb of disk, but note that whole slide images typically use 0.5-2 gb of disk each.
-
-## Open Source Development
-We have a discussion mailing list! Stop by and discuss all things caMicroscope. https://groups.google.com/forum/#!forum/camicroscope
+## Using the form response API
+If you want to test the form response API, you can follow these steps:
+1. With your Docker containers running, navigate to either the registration or exit forms on the caMicroscope landing page
+2. Fill out all the required fields in the form and click submit when you are finished. You should be redirected back to the landing page
+3. Open the `caMicResponseAPI.R` file from the repository in RStudio
+4. With your containers still running, run the script from the file
+5. The resulting files will be titled "dfRegistration" and "dfExit" which will contain a table of all the responses you entered into the forms (You can fill out the form multiple times if you want to see what it looks like with multiple entries)
