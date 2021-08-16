@@ -1,4 +1,5 @@
 library(httr)
+library(HTTraw)
 
 # Download registration and exit data
 
