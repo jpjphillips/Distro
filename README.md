@@ -9,7 +9,7 @@ This repository contains a build of caMicroscope designed to be easy installed f
 ## What you need to install
 - Docker - Installing a local instance of caMicroscope depends on the software Docker. Many versions of Docker are available and should work, but I recommend using Docker Desktop which can be found here: https://www.docker.com/products/docker-desktop
 - Ability to clone repositories - You will have to clone this repository in order to build your local instance. Do this anyway that you are comfortable with such as using SmartGit.
-- (Optional) RStudio + HTT Package - Included in this repository is an API to extract responses to the registration/exit forms into R. For this, you will need RStudio and the current HTT package
+- (Optional) RStudio + HTT Raw Package - Included in this repository is an API to extract responses to the registration/exit forms into R. For this, you will need RStudio and the current HTT package
 
 ## Setting up your local instance
 In order to run this build on your local machine, you will need to build and run Docker containers. The below process outlines the easiest way to do so:
