@@ -16,9 +16,10 @@ In order to run this build on your local machine, you will need to build and run
 1. Clone this repository onto your local machine
 2. Start up your version of Docker. For Docker Desktop, all you need to do is open the application and wait for it to begin running
 3. Open a command prompt and set your directory to your cloned repository
-4. With Docker running, enter the command `docker-compose -f caMicroscope.yml build` into your command prompt to build your containers
+4. With Docker running, enter the command `docker-compose -f caMicroscope.yml build` into your command prompt to build your containers (Note: Make sure you have deleted any previously built containers for caMicroscope before running this command)
 5. Once the containers have been built, you can run them with the command `docker-compose -f caMicroscope.yml up` (It may take a couple seconds for the containers to start)
 6. Navigate to http://localhost:4010/apps/landing/crowd.html and you should see the landing page of caMicroscope
+7. There is a common issue of being redirected to the sign in page from the link above. To avoid this, click the sign in button, enter your information and submit. You should recieve and error and be redirected to a new page. At this point you can once again go to the link above and you should be able to access the landing page now.
 
 You now have a local instance of caMicroscope on your device! You can explore the build as much as you want and when you are finished, go to your command prompt an press Ctrl + C to stop the Docker containers from running.
 
