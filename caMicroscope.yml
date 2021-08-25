@@ -46,12 +46,12 @@ services:
       - ./jwt_keys/:/src/keys/
       - ./config/routes.json:/src/routes.json
       - ./config/contentSecurityPolicy.json:/src/contentSecurityPolicy.json
-      - ./httFront/:/src/camicroscope/
+      - ../caMicroscope/:/src/camicroscope/
     environment:
       JWK_URL: "https://www.googleapis.com/oauth2/v3/certs"
       IIP_PATH: "http://ca-iip:8080/fcgi-bin/iipsrv.fcgi"
       MONGO_URI: "mongodb://ca-mongo"
-      DISABLE_SEC: "true"
+      DISABLE_SEC: "false"
       DISABLE_TF: "true"
   iip:
     image: camicroscope/iipimage:version-3.8.4
